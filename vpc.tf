@@ -1,16 +1,13 @@
-module "vpc" {
-    source  = "terraform-google-modules/network/google"
-    version = "~> 3.0"
+module "network" {
+  source  = "app.terraform.io/db-ankit/network/google"
+  version = "3.4.0"
+  # insert required variables here
 
-    project_id   = var.project
-    network_name = "example-vpc"
-    routing_mode = "GLOBAL"
-
-    subnets = [
-        {
-            subnet_name           = "subnet-01"
-            subnet_ip             = "10.10.10.0/24"
-            subnet_region         = "us-west1"
-        }
-    ]
+  subnets = [
+    {
+      subnet_name   = "gaurav-subnet"
+      subnet_ip     = "10.100.10.0/24"
+      subnet_region = var.region
+    }
+  ]
 }
